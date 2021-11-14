@@ -50,7 +50,12 @@ namespace OpenWeatherAPI
         /// <returns></returns>
         public async Task<OpenWeatherOneCallModel> GetOneCallAsync()
         {
-            
+            //ajout
+            if (string.IsNullOrEmpty(ApiKey))
+                throw new ArgumentException("ApiKey est vide ou null");
+            if (ApiHelper.ApiClient == null)
+                throw new ArgumentException("Apiweather n'est pas initialisé");
+            //fin ajout
             EndPoint = $"/onecall?";
 
             /// Src : https://stackoverflow.com/a/14517976/503842
@@ -75,6 +80,12 @@ namespace OpenWeatherAPI
         /// <returns></returns>
         public async Task<OWCurrentWeaterModel> GetCurrentWeatherAsync()
         {
+            //ajout 
+            if (string.IsNullOrEmpty(ApiKey))
+                throw new ArgumentException("ApiKey est vide ou null");
+            if (ApiHelper.ApiClient == null)
+                throw new ArgumentException("ApiWeather n'est pas initialisé");
+            //fin ajout
             EndPoint = $"/weather?";
 
             /// Src : https://stackoverflow.com/a/14517976/503842
