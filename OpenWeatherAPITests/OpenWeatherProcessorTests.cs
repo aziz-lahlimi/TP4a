@@ -38,6 +38,19 @@ namespace OpenWeatherAPITests
             _sut.ApiKey = apiKey;
             await Assert.ThrowsAsync<ArgumentException>(() => _sut.GetOneCallAsync());
         }
-       
+
+        //Afficher le message de l’exception dans l’erreur que le client http n’est pas initialisé
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        public async Task GetCurrentWeatherAsync_IfApiHelperNotInitialized_ThrowArgumentException(string apiKey)
+        {
+            _sut = OpenWeatherProcessor.Instance;
+            ApiHelper.InitializeClient();
+            _sut.ApiKey = apiKey;
+            await Assert.ThrowsAsync<ArgumentException>(() => _sut.GetCurrentWeatherAsync());
+        }
+
+
     }
 }
