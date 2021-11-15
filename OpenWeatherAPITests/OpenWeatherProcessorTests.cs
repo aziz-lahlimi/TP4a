@@ -50,7 +50,5 @@ namespace OpenWeatherAPITests
             _sut.ApiKey = apiKey;
             await Assert.ThrowsAsync<ArgumentException>(() => _sut.GetCurrentWeatherAsync());
         }
-
-
     }
 }
