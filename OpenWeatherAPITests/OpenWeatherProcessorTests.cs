@@ -18,7 +18,15 @@ namespace OpenWeatherAPITests
             await Assert.ThrowsAsync<ArgumentException>(() => _sut.GetOneCallAsync());
 
         }
+        //Afficher le message de l’exception dans l’erreur que ApiKey est vide ou null.
+        [Fact]
+        public async void GetCurrentWeatherAsync_IfApiKeyEmptyOrNull_ThrowArgumentException()
+        {
+            _sut = OpenWeatherProcessor.Instance;
+            _sut.ApiKey = "balabla";
+            ApiHelper.ApiClient = null;
+            await Assert.ThrowsAsync<ArgumentException>(() => _sut.GetCurrentWeatherAsync());
+        }
        
-
     }
 }
